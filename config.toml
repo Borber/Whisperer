@@ -1,4 +1,6 @@
 [base]
+# 显示在加密文本前的标识
+FLAG = "低语: "
 # 混淆原始数据的密钥, 尽量不要低于32位
 KEY = "XDXDtudou@KeyFansClub^_^Encode!!"
 # 生成加密hash的派生密钥
