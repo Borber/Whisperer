@@ -16,3 +16,5 @@ readme = "README.md"
 [dependencies]
 blake3 = "1"
 zstd = "0.9"
+toml = "0.5"
+serde = "1"
