@@ -7,7 +7,7 @@ mod config;
 
 fn main() {
     Conf::init_conf();
-    let s = "BORBER";
+    let s = "「xxx.txt」https://www.aliyundrive.com/s/5TDHtNd8YTd 点击链接保存，或者复制本段内容，打开「阿里云盘」APP ，无需下载极速在线查看，视频原画倍速播放。";
     let re = encode(s);
     println!("{}{}", Conf::global().flag, re);
     let er = decode(&re);
@@ -16,7 +16,7 @@ fn main() {
 
 pub fn decode(s: &str) -> String {
     let reduction: Vec<u8> = s.chars().into_iter().map(|c| Conf::global().dict.binary_search(&c).expect("解密失败, 请检查你的输入 / decode failure check the input") as u8).collect();
-    let clear: Vec<u8> = reduction.iter().enumerate().map(|(index, e)| decrypt(index, e)).collect();
+    let clear: Vec<u8> = reduction.iter().enumerate().map(|(index, e)| decrypt(index, reduction.len(), e)).collect();
     let buf = zstd::stream::decode_all(clear.as_slice()).unwrap_or(clear);
     let mut result = String::from_utf8(buf).expect("解密失败, 请检查你的输入 / decode failure check the input");
     for key in &Conf::global().key_words {
@@ -32,6 +32,6 @@ pub fn encode(s: &str) -> String {
     }
     let compressed = zstd::stream::encode_all(buf.as_bytes(), 20).expect("压缩失败 / compress failure!"); //zstd最高级别压缩
     let short = if buf.as_bytes().len() > compressed.len() { compressed } else { buf.as_bytes().to_vec() };
-    let cipher: Vec<u8> = short.iter().enumerate().map(|(index, d)| encrypt(index, d)).collect();
+    let cipher: Vec<u8> = short.iter().enumerate().map(|(index, d)| encrypt(index, short.len(), d)).collect();
     cipher.iter().map(|c| Conf::global().dict[*c as usize]).into_iter().collect() //映射u8为中文字符
 }
