@@ -1,3 +1,5 @@
+use clap::Parser;
+
 use crate::config::Conf;
 use crate::crypt::{decrypt, encrypt};
 
@@ -5,16 +7,47 @@ mod crypt;
 mod hash;
 mod config;
 
-fn main() {
-    Conf::init_conf();
-    let s = "「xxx.txt」https://www.aliyundrive.com/s/5TDHtNd8YTd 点击链接保存，或者复制本段内容，打开「阿里云盘」APP ，无需下载极速在线查看，视频原画倍速播放。";
-    let re = encode(s);
-    println!("{}{}", Conf::global().flag, re);
-    let er = decode(&re);
-    println!("{}", er);
+#[derive(Parser)]
+#[clap(author, version, about)]
+struct Cli {
+    /// 待加密文本 / Text to be encrypted
+    value: Option<String>,
+
+    /// 待解密文本 / Text to be decrypted
+    #[clap(short, long, value_name = "VALUE")]
+    decrypt: Option<String>,
 }
 
-pub fn decode(s: &str) -> String {
+fn main() {
+    Conf::init_conf();
+    let cli: Cli = Cli::parse();
+    match cli.value {
+        Some(value) => {
+            println!("{}{}", Conf::global().flag, encode(value.to_string()));
+        },
+        None => {}
+    }
+    match cli.decrypt {
+        Some(decrypt) => {
+            if decrypt.starts_with(&Conf::global().flag) {
+                println!("{}", decode(decrypt.replace(&Conf::global().flag, "")));
+            } else {
+                println!("请检查你的输入格式, 形如 -> {}XXX", &Conf::global().flag)
+            }
+        },
+        None => {}
+    }
+    //
+    // let s = "「xxx.txt」https://www.aliyundrive.com/s/5TDHtNd8YTd 点击链接保存，或者复制本段内容，打开「阿里云盘」APP ，无需下载极速在线查看，视频原画倍速播放。";
+    // let re = format!("{}{}", Conf::global().flag, encode(s.to_string()));
+    // println!("{}", re);
+    // if re.starts_with(&Conf::global().flag) {
+    //     let er = decode(re.replace(&Conf::global().flag, ""));
+    //     println!("{}", er);
+    // }
+}
+
+pub fn decode(s: String) -> String {
     let reduction: Vec<u8> = s.chars().into_iter().map(|c| Conf::global().dict.binary_search(&c).expect("解密失败, 请检查你的输入 / decode failure check the input") as u8).collect();
     let clear: Vec<u8> = reduction.iter().enumerate().map(|(index, e)| decrypt(index, reduction.len(), e)).collect();
     let buf = zstd::stream::decode_all(clear.as_slice()).unwrap_or(clear);
@@ -25,7 +58,7 @@ pub fn decode(s: &str) -> String {
     result
 }
 
-pub fn encode(s: &str) -> String {
+pub fn encode(s: String) -> String {
     let mut buf = String::from(s);
     for key in &Conf::global().key_words {
         buf = buf.replace(key[0].as_str(), key[1].as_str());
