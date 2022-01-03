@@ -1,6 +1,7 @@
-<a href="https://www.jetbrains.com/?from=whisperer"><img src="icon_CLion.svg" height="40px"/></a> 使用 CLion 制作。感谢 [JetBrains](https://www.jetbrains.com/?from=whisperer) 对开源的支持！
+<a href="https://www.jetbrains.com/?from=whisperer"><img src="icon_CLion.svg" height="40px"/></a> 使用 CLion
+制作。感谢 [JetBrains](https://www.jetbrains.com/?from=whisperer) 对开源的支持！
 
-
+<mark>注意</mark> 目前版本号为 `0.0.2` 低于 `0.1.0` , 故而在开发过程中可能出现大规模的代码变动以及结构调整, 请及时关注最新的 `release` 说明
 
 `rust`萌新练手项目, 因为最近在学习压缩,加密相关知识. 也因为目前网络上的`曰`类加密工具基本都没有开源无法保证长久有效的提供服务, 就想写一个开源方便的项目来避免相关的风险.
 
@@ -12,13 +13,8 @@
 
 ## TODO
 
-- [ ] 常量移入配置文件
-  - [x] 准备工作
-  - [ ] 求余密钥
-  - [ ] 字典
-  - [ ] 标识
-  - [ ] 派生密钥
-  - [ ] 优化关键词
+- [ ] 对输入字符串进行判断
+
 - [ ] 命令行封装
 - [ ] 字典校验及排序工具
 - [ ] `GUI`界面
@@ -29,6 +25,20 @@
 
 ## 已完成
 
+- [x] 常量移入配置文件
+
+  - [x] 准备工作
+
+  - [x] 求余密钥
+
+  - [x] 字典
+
+  - [x] 标识
+
+  - [x] 派生密钥
+
+  - [x] 优化关键词
+
 - [x] 使用简体字字典, 避免部分平台对繁体的操作
 - [x] zstd 压缩数据
 - [x] 自定义求余加密算法
@@ -37,8 +47,6 @@
   - [x] 磁力链接
   - [x] 百度分享链接
   - [x] 阿里云盘分享链接
-
-
 
 ## 常见奇葩<sup>褒义</sup>加密对比
 

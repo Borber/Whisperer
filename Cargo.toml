@@ -1,6 +1,6 @@
 [package]
 name = "whisperer"
-version = "0.1.0"
+version = "0.0.2"
 authors = ["Borber <borber.drum@gmail.com>"]
 edition = "2021"
 license = "GPL-3.0-or-later"
@@ -17,4 +17,5 @@ readme = "README.md"
 blake3 = "1"
 zstd = "0.9"
 toml = "0.5"
-serde = "1"
+serde = { version = "1", features = ["derive"] }
+once_cell = "1"
