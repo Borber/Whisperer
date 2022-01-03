@@ -7,7 +7,6 @@ mod config;
 
 fn main() {
     Conf::init_conf();
-    println!("{:?}", Conf::global().derive_key);
     let s = "BORBER";
     let re = encode(s);
     println!("{}{}", Conf::global().flag, re);
