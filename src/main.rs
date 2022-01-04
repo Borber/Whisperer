@@ -37,14 +37,6 @@ fn main() {
         },
         None => {}
     }
-    //
-    // let s = "「xxx.txt」https://www.aliyundrive.com/s/5TDHtNd8YTd 点击链接保存，或者复制本段内容，打开「阿里云盘」APP ，无需下载极速在线查看，视频原画倍速播放。";
-    // let re = format!("{}{}", Conf::global().flag, encode(s.to_string()));
-    // println!("{}", re);
-    // if re.starts_with(&Conf::global().flag) {
-    //     let er = decode(re.replace(&Conf::global().flag, ""));
-    //     println!("{}", er);
-    // }
 }
 
 pub fn decode(s: String) -> String {
