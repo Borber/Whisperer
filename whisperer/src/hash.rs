@@ -1,4 +1,4 @@
-use crate::Conf;
+use crate::config::Conf;
 
 pub fn mix_hash_code(index: usize, length: usize, key: &[u8]) -> u8 {
     let mixed = [index.to_be_bytes().as_slice(), key, length.to_be_bytes().as_slice()].concat();

@@ -1,22 +1,10 @@
-[package]
-name = "whisperer"
-version = "0.0.4"
-authors = ["Borber <borber.drum@gmail.com>"]
-edition = "2021"
-license = "GPL-3.0-or-later"
-description = "将文本编码为简短的中文字符, 防和谐"
-keywords = ["encode", "chinese"]
-homepage = "https://github.com/Borber/whisperer"
-repository = "https://github.com/Borber/whisperer"
-include = ["/src/**/*", "/Cargo.toml", "/LICENSE", "/README.md"]
-readme = "README.md"
+[workspace]
+members = [
+    "whisperer",
+    "whisperer-cli",
+    "whisperer-server"
+]
 
-
-
-[dependencies]
-blake3 = "1"
-clap = { version = "3", features = ["derive", "cargo"] }
-once_cell = "1"
-serde = { version = "1", features = ["derive"] }
-toml = "0.5"
-zstd = "0.9"
+[profile.release]
+opt-level = 's'
+lto = true
