@@ -1,7 +1,7 @@
 use clap::Parser;
 
 use whisperer::{decode, encode};
-use whisperer::config::Conf;
+use whisperer::config::{Conf, pure_config};
 
 #[derive(Parser)]
 #[clap(author, version, about)]
@@ -40,21 +40,17 @@ fn main() {
     match cli.check_dict {
         true => {
             let mut pass = true;
-            let mut dict_tmp = Conf::global().dict.clone();
+            let dict_tmp = pure_config().dict;
             if dict_tmp.len() != 256 {
                 println!("长度错误, 应长256");
                 pass = false;
             }
-            dict_tmp.sort();
-            if Conf::global().dict != dict_tmp {
-                println!("顺序错误, 应为:");
-                println!("{:?}", dict_tmp);
-                pass = false;
-            }
-            for i in 0..dict_tmp.len() - 1 {
-                if dict_tmp[i] == dict_tmp[i + 1] {
-                    println!("第{},{}相同, 值为:{}", i, i + 1, dict_tmp[i]);
-                    pass = false;
+            for i in 0..dict_tmp.len() {
+                for j in i + 1..dict_tmp.len() {
+                    if dict_tmp[i] == dict_tmp[j] && i != j {
+                        println!("第{},{}个相同, 值为{}", i, j, dict_tmp[i]);
+                        pass = false;
+                    }
                 }
             }
             if pass {
