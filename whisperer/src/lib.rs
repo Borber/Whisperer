@@ -27,7 +27,7 @@ pub fn encode(s: String) -> String {
     for key in &Conf::global().key_words {
         buf = buf.replace(key[0].as_str(), key[1].as_str());
     }
-    let compressed = zstd::stream::encode_all(buf.as_bytes(), 22).expect("压缩失败"); //zstd最高级别压缩
+    let compressed = zstd::stream::encode_all(buf.as_bytes(), Conf::global().zstd_level).expect("压缩失败"); //zstd最高级别压缩
     let mut short = if buf.as_bytes().len() > compressed.len() { compressed } else { buf.as_bytes().to_vec() };
     let mut rng = rand::thread_rng();
     let random: u8 = rng.gen();

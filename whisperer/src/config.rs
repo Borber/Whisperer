@@ -11,6 +11,7 @@ pub struct Conf {
     pub derive_key: String,
     pub dict: Vec<char>,
     pub key_words: Vec<[String; 2]>,
+    pub zstd_level: i32
 }
 
 static G_CONF: OnceCell<Conf> = OnceCell::new();
