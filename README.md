@@ -2,7 +2,7 @@
 制作。感谢 [JetBrains](https://www.jetbrains.com/?from=whisperer) 对开源的支持！
 
 ![注意](https://img.shields.io/static/v1?style=for-the-badge&label=&message=%E6%B3%A8%E6%84%8F&color=yellow)
-当前版本号为 `0.0.4` 低于 `0.1.0` , 故而在开发过程中可能出现大规模的代码变动以及结构调整, 请及时关注最新的 `release` 说明
+当前版本号为 `0.0.6` 低于 `0.1.0` , 故而在开发过程中可能出现大规模的代码变动以及结构调整, 请及时关注最新的 `release` 说明
 
 `rust`萌新练手项目, 因为最近在学习压缩,加密相关知识. 也因为目前网络上的`曰`类加密工具基本都没有开源无法保证长久有效的提供服务, 就想写一个开源方便的项目来避免相关的风险.
 
