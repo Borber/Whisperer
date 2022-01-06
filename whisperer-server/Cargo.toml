@@ -1,6 +1,6 @@
 [package]
 name = "whisperer-server"
-version = "0.0.1"
+version = "0.0.2"
 authors = ["Borber <borber.drum@gmail.com>"]
 edition = "2021"
 license = "GPL-3.0-or-later"
