@@ -12,10 +12,10 @@ include = ["/src/**/*", "/Cargo.toml", "/LICENSE", "/README.md"]
 readme = "README.md"
 
 [dependencies]
-axum = "0.4"
+poem = "1.2"
 serde = { version = "1.0", features = ["derive"] }
 serde_json = "1"
-tokio = { version = "1.0", features = ["full"] }
+tokio = { version = "1", features = ["full"] }
 tracing = "0.1"
 tracing-subscriber = { version = "0.3", features = ["env-filter"] }
 whisperer = { path = "../whisperer", version = "0" }

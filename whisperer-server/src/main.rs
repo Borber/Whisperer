@@ -1,55 +1,63 @@
-use std::collections::HashMap;
-use std::net::SocketAddr;
-
-use axum::extract::Path;
-use axum::Router;
-use axum::routing::get;
-use tracing::debug;
-use tracing::log::info;
-use tracing_subscriber;
+use poem::{handler, listener::TcpListener, post, Route, Server, web::Json};
+use tracing::{debug, info};
 
 use whisperer::{decode, encode};
 use whisperer::config::Conf;
 
+use crate::response::JsonBody;
+
+mod response;
+
+const ADDR: &str = "127.0.0.1:3000";
+
 #[tokio::main]
-async fn main() {
+async fn main() -> Result<(), std::io::Error> {
+    if std::env::var_os("RUST_LOG").is_none() {
+        std::env::set_var("RUST_LOG", "poem=debug");
+    }
     tracing_subscriber::fmt::init();
     Conf::init_conf();
-    let app = Router::new()
-        .route("/v1/api/e/:e", get(encode_api))
-        .route("/v1/api/d/:d", get(decode_api));
-    let addr = SocketAddr::from(([127, 0, 0, 1], 3000));
-    info!("listening on {}", addr);
-    axum::Server::bind(&addr)
-        .serve(app.into_make_service())
+
+    let app = Route::new()
+        .at("/v1/api/e", post(encode_api))
+        .at("/v1/api/d", post(decode_api));
+    info!("listening on {}", ADDR);
+    Server::new(TcpListener::bind(ADDR))
+        .run(app)
         .await
-        .unwrap();
 }
 
-async fn encode_api(Path(params): Path<HashMap<String, String>>) -> String {
-    match params.get("e") {
-        Some(e) => {
-            debug!("加密->{}", e);
-            let re = format!("{}{}", Conf::global().flag, encode(e.to_string()));
+
+#[handler]
+fn encode_api(req: Json<JsonBody>) -> Json<serde_json::Value> {
+    match req.s.len() {
+        l if l > 0 => {
+            debug!("加密->{}", req.s);
+            let re = format!("{}{}", Conf::global().flag, encode(req.s.to_string()));
             debug!("结果<-{}", re);
-            re
+            response::success_s(re)
         }
-        None => { String::from("请输入文字") }
+        _ => {
+            response::fail("请输入文字")
+        }
     }
 }
 
-async fn decode_api(Path(params): Path<HashMap<String, String>>) -> String {
-    match params.get("d") {
-        Some(d) => {
-            debug!("解密->{}", d);
-            if d.starts_with(&Conf::global().flag) {
-                let re = format!("{}", decode(d.replace(&Conf::global().flag, "")));
+#[handler]
+fn decode_api(req: Json<JsonBody>) -> Json<serde_json::Value> {
+    match req.s.len() {
+        l if l > 0 => {
+            debug!("解密->{}", req.s);
+            if req.s.starts_with(&Conf::global().flag) {
+                let re = format!("{}", decode(req.s.replace(&Conf::global().flag, "")));
                 debug!("结果->{}", re);
-                re
+                response::success_s(re)
             } else {
-                format!("请检查你的输入格式, 形如 -> {}XXX", &Conf::global().flag)
+                response::fail(format!("请检查你的输入格式, 形如 -> {}XXX", &Conf::global().flag).as_str())
             }
         }
-        None => { String::from("请输入文字") }
+        _ => {
+            response::fail("请输入文字")
+        }
     }
 }
