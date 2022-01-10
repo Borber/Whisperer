@@ -19,7 +19,7 @@ struct Cli {
 }
 
 fn main() {
-    Conf::init_conf();
+    Conf::init_conf("config.toml");
     let cli: Cli = Cli::parse();
     match cli.value {
         Some(encrypt) => {
@@ -40,7 +40,7 @@ fn main() {
     match cli.check_dict {
         true => {
             let mut pass = true;
-            let dict_tmp = pure_config().dict;
+            let dict_tmp = pure_config("config.toml").dict;
             if dict_tmp.len() != 256 {
                 println!("长度错误, 应长256");
                 pass = false;

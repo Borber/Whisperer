@@ -16,7 +16,7 @@ async fn main() -> Result<(), std::io::Error> {
         std::env::set_var("RUST_LOG", "poem=debug");
     }
     tracing_subscriber::fmt::init();
-    Conf::init_conf();
+    Conf::init_conf("config.toml");
 
     let app = Route::new()
         .at("/v1/api/e", post(encode_api))
