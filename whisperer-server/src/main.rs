@@ -3,15 +3,16 @@ use tracing::{debug, info};
 
 use whisperer::{decode, encode};
 use whisperer::config::Conf;
+use crate::config::ServerConf;
 
 use crate::response::JsonBody;
 
 mod response;
-
-const ADDR: &str = "127.0.0.1:3000";
+mod config;
 
 #[tokio::main]
 async fn main() -> Result<(), std::io::Error> {
+    let addr = ServerConf::init_config("server.toml").get_address();
     if std::env::var_os("RUST_LOG").is_none() {
         std::env::set_var("RUST_LOG", "poem=debug");
     }
@@ -21,8 +22,8 @@ async fn main() -> Result<(), std::io::Error> {
     let app = Route::new()
         .at("/v1/api/e", post(encode_api))
         .at("/v1/api/d", post(decode_api));
-    info!("listening on {}", ADDR);
-    Server::new(TcpListener::bind(ADDR))
+    info!("listening on {}", addr);
+    Server::new(TcpListener::bind(addr))
         .run(app)
         .await
 }
