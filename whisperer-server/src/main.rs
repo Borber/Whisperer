@@ -12,16 +12,16 @@ mod config;
 
 #[tokio::main]
 async fn main() -> Result<(), std::io::Error> {
-    let addr = ServerConf::init_config("server.toml").get_address();
+    Conf::init_conf("config.toml");
+    let server_config = ServerConf::init_config("server.toml");
+    let addr = server_config.get_address();
     if std::env::var_os("RUST_LOG").is_none() {
         std::env::set_var("RUST_LOG", "poem=debug");
     }
     tracing_subscriber::fmt::init();
-    Conf::init_conf("config.toml");
-
     let app = Route::new()
-        .at("/v1/api/e", post(encode_api))
-        .at("/v1/api/d", post(decode_api));
+        .at(server_config.path.e, post(encode_api))
+        .at( server_config.path.d, post(decode_api));
     info!("listening on {}", addr);
     Server::new(TcpListener::bind(addr))
         .run(app)
@@ -50,7 +50,7 @@ fn decode_api(req: Json<JsonBody>) -> Json<serde_json::Value> {
         l if l > 0 => {
             debug!("解密->{}", req.s);
             if req.s.starts_with(&Conf::global().flag) {
-                let re = format!("{}", decode(req.s.replace(&Conf::global().flag, "")));
+                let re = decode(req.s.replace(&Conf::global().flag, ""));
                 debug!("结果->{}", re);
                 response::success_s(re)
             } else {

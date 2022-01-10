@@ -23,7 +23,7 @@ impl Conf {
 
     pub fn init_conf(path: &str) {
         let mut conf = pure_config(path);
-        conf.dict.sort();
+        conf.dict.sort_unstable();
         G_CONF.set(conf).expect("设置全局配置失败");
     }
 }

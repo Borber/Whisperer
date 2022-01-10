@@ -4,7 +4,14 @@ use serde::Deserialize;
 #[derive(Deserialize, Debug)]
 pub struct ServerConf {
     pub host: String,
-    pub port: usize
+    pub port: usize,
+    pub path: Path
+}
+
+#[derive(Deserialize, Debug)]
+pub struct Path {
+    pub e: String,
+    pub d: String
 }
 
 impl ServerConf {

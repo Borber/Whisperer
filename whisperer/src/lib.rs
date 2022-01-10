@@ -23,7 +23,7 @@ pub fn decode(s: String) -> String {
 }
 
 pub fn encode(s: String) -> String {
-    let mut buf = String::from(s);
+    let mut buf = s;
     for key in &Conf::global().key_words {
         buf = buf.replace(key[0].as_str(), key[1].as_str());
     }
@@ -32,8 +32,7 @@ pub fn encode(s: String) -> String {
     let mut rng = rand::thread_rng();
     let random: u8 = rng.gen();
     short.insert(0, random);
-    let mut cipher: Vec<u8> = Vec::new();
-    cipher.push(random);
+    let mut cipher: Vec<u8> = vec![random];
     for (index, d) in short.iter().enumerate() {
         if index == 0 { continue; }
         cipher.push(encrypt(index, cipher.last().unwrap(), short.len(), d));
