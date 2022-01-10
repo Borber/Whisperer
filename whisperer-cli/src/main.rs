@@ -26,9 +26,9 @@ fn main() {
     }
     if let Some(decrypt) = cli.decrypt {
         if decrypt.starts_with(&Conf::global().flag) {
-        println!("{}", decode(decrypt.replace(&Conf::global().flag, "")));
+            println!("{}", decode(decrypt.replace(&Conf::global().flag, "")));
         } else {
-        println!("请检查你的输入格式, 形如 -> {}XXX", &Conf::global().flag)
+            println!("请检查你的输入格式, 形如 -> {}XXX", &Conf::global().flag)
         }
     }
 
