@@ -34,5 +34,3 @@ pub fn pure_config(path: &str) -> Conf {
     file.read_to_string(&mut str_val).expect("请确认文件编码格式");
     toml::from_str(&str_val).expect("解析失败, 请查看你的配置文件结构")
 }
-
-
