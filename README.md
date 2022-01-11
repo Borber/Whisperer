@@ -1,8 +1,7 @@
 <a href="https://www.jetbrains.com/?from=whisperer"><img src="icon_CLion.svg" height="40px"/></a> 使用 CLion
 制作。感谢 [JetBrains](https://www.jetbrains.com/?from=whisperer) 对开源的支持！
 
-![注意](https://img.shields.io/static/v1?style=for-the-badge&label=&message=%E6%B3%A8%E6%84%8F&color=yellow)
-当前版本号为 `0.0.6` 低于 `0.1.0` , 故而在开发过程中可能出现大规模的代码变动以及结构调整, 请及时关注最新的 `release` 说明
+![注意](https://img.shields.io/static/v1?style=for-the-badge&label=&message=%E6%B3%A8%E6%84%8F&color=yellow)当前版本号为 `0.0.6` 低于 `0.1.0` , 故而在开发过程中可能出现大规模的代码变动以及结构调整, 请及时关注最新的 `release` 说明
 
 `rust`萌新练手项目, 因为最近在学习压缩,加密相关知识. 也因为目前网络上的`曰`类加密工具基本都没有开源无法保证长久有效的提供服务, 就想写一个开源方便的项目来避免相关的风险.
 
@@ -14,7 +13,9 @@ _古神的低语_
 
 将文本编码为简短的中文字符, 防和谐, 并非加密. 如需加密请使用其他实用工具
 
-## 安装
+
+
+## Cli
 
 ### 1. Windows
 
@@ -24,14 +25,14 @@ _古神的低语_
 
 下载源码, 使用 `cargo build --release` 编译最新二进制文件, 后续会添加多平台的二进制支持. 请耐心等待
 
-## 使用方法
+#### 使用方法
 
 ```shell
 // 加密
 ./whisperer.exe 123
-低语:诵想帝
+低语:央慈奉资
 // 解密
-./whisperer.exe -d 低语:诵想帝
+./whisperer.exe -d 低语:央慈奉资
 123
 // 字典校验及排序
 ./whisperer.exe --check-dict
@@ -40,14 +41,72 @@ _古神的低语_
 
 字典校验及排序, 检验的是 `config.toml` 中的 `dict` 数组
 
+#### `config.toml` 配置说明
+
+详情请看 whisperer/config.toml
+
+|    名称    |                 功能                 |
+| :--------: | :----------------------------------: |
+|    flag    |        显示在加密文本前的标识        |
+|    key     | 混淆原始数据的密钥, 尽量不要低于32位 |
+| derive_key |        生成加密hash的派生密钥        |
+|    dict    |  映射 0-255 u8 数值为中文字符的字典  |
+| key_words  |           优化部分常见格式           |
+| zstd_level |            zstd 压缩等级             |
+
+
+
+## Server
+
+运行 `server` 程序, 根据 `server.toml`配置, 将监听对应地址端口, 项目样例中为 `127.0.0.1:3000`, 加密解密`api`地址也可在 `server.toml`中配置. 
+
+### 加密
+
+`post` 请求 `localhost:3000/v1/api/e`
+
+```json
+{
+    "s": "123"
+}
+```
+
+响应:
+
+```json
+{
+    "s": "低语:央慈奉资"
+}
+```
+
+
+
+### 解密
+
+`post`请求 `localhost:3000/v1/api/d`
+
+```json
+{
+    "s": "低语:央慈奉资"
+}
+```
+
+响应:
+
+```json
+{
+    "s": "123"
+}
+```
+
+
+
 ## TODO
 
 - [ ] 服务器部署, 提供样例`api`接口
   - [x] 服务端开始提供
   - [x] 更新为post方法, 提供 `json` 支持
   - [x] 监听地址配置化
-  - [ ] api地址移入配置
-  - [ ] 接受命令行参数
+  - [x] api地址移入配置
   - [ ] 部署云端
 - [ ] 尝试是否可以完全前端化 -> `wasm` 
 - [ ] `GUI`界面
