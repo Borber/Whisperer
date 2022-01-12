@@ -29,7 +29,7 @@ fn decode_api(endpoint: String, body: RequestBody) -> String {
 }
 
 fn main() {
-    Conf::init_conf(r"C:\Users\BORBER\Code\Rust\Whisperer\whisperer\config.toml");
+    Conf::init_conf("config.toml");
     tauri::Builder::default()
         .invoke_handler(tauri::generate_handler![
             encode_api,
