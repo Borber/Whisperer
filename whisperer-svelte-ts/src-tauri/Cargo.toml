@@ -1,0 +1,26 @@
+[package]
+name = "whisperer-svelte-ts"
+version = "0.0.1"
+authors = ["Borber <borber.drum@gmail.com>"]
+edition = "2021"
+license = "GPL-3.0-or-later"
+description = "将文本编码为简短的中文字符, 防和谐"
+keywords = ["encode", "chinese"]
+homepage = "https://github.com/Borber/whisperer"
+repository = "https://github.com/Borber/whisperer"
+readme = "README.md"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[build-dependencies]
+tauri-build = { version = "1.0.0-beta.4" }
+
+[dependencies]
+serde_json = "1.0"
+serde = { version = "1.0", features = ["derive"] }
+tauri = { version = "1.0.0-beta.8", features = ["api-all"] }
+whisperer = { path = "../../whisperer", version = "0" }
+
+[features]
+default = [ "custom-protocol" ]
+custom-protocol = [ "tauri/custom-protocol" ]

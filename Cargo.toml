@@ -2,7 +2,8 @@
 members = [
     "whisperer",
     "whisperer-cli",
-    "whisperer-server"
+    "whisperer-server",
+    "whisperer-svelte-ts/src-tauri"
 ]
 
 [profile.release]
