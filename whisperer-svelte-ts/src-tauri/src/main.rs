@@ -5,11 +5,12 @@ windows_subsystem = "windows"
 
 use serde::Deserialize;
 use tauri::command;
-use whisperer::{encode, decode, config::Conf};
+
+use whisperer::{config::Conf, decode, encode};
 
 #[derive(Debug, Deserialize)]
 pub struct RequestBody {
-    s: String
+    s: String,
 }
 
 #[command]
@@ -29,7 +30,7 @@ fn decode_api(endpoint: String, body: RequestBody) -> String {
 }
 
 fn main() {
-    Conf::init_conf("config.toml");
+    Conf::init_conf(r"D:\code\rust\whisperer\whisperer\config.toml");
     tauri::Builder::default()
         .invoke_handler(tauri::generate_handler![
             encode_api,

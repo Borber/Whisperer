@@ -19,7 +19,7 @@
         invoke("decode_api", {
             endpoint: "解密",
             body: {
-                s: (<HTMLInputElement> encode_text).value
+                s: (<HTMLInputElement>encode_text).value
             },
         }).then(
             (res) => {
@@ -27,6 +27,9 @@
             }
         )
     };
+    const cp = () => {
+        navigator.clipboard.writeText(result);
+    }
 </script>
 
 <textarea bind:this={encode_text}></textarea>
@@ -39,6 +42,10 @@
 </button>
 
 <p>{result}</p>
+
+<button on:click={cp}>
+    复制
+</button>
 
 <style>
 </style>
