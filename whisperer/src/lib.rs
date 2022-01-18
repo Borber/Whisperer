@@ -8,7 +8,7 @@ mod hash;
 pub mod config;
 
 pub fn decode(s: String) -> String {
-    let reduction: Vec<u8> = s.chars().into_iter().map(|c| Conf::global().dict.binary_search(&c).expect("解密失败, 请检查你的输入") as u8).collect();
+    let reduction: Vec<u8> = s.trim().chars().into_iter().map(|c| Conf::global().dict.binary_search(&c).expect("解密失败, 请检查你的输入") as u8).collect();
     let mut clear: Vec<u8> = Vec::new();
     for (index, e) in reduction.iter().enumerate() {
         if index == 0 { continue; }
@@ -23,7 +23,7 @@ pub fn decode(s: String) -> String {
 }
 
 pub fn encode(s: String) -> String {
-    let mut buf = s;
+    let mut buf = s.trim().to_string();
     for key in &Conf::global().key_words {
         buf = buf.replace(key[0].as_str(), key[1].as_str());
     }
