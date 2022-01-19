@@ -43,6 +43,9 @@ _古神的低语_
 
 ![截图](https://i.pstorage.space/i/qYe9xjKX5/original_1.png)
 
+推荐安装：[BC咒术回战](https://mp.weixin.qq.com/s/zkV_yDuJalN62PqcdEcsHQ) 字体， 来源 公众号：北辰的字体集， 第一次看见这个字体就大爱了， 后面一直在使用，
+包括日常的笔记都是用的这个字体写的好看又易读。演示图中字体即为 BC咒术回战体, 安装之后重启应用即可使用
+
 #### `config.toml` 配置说明
 
 详情请看 whisperer/config.toml
