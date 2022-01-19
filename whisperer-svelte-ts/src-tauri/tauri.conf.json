@@ -54,9 +54,9 @@
     "windows": [
       {
         "title": "Whisperer",
-        "width": 800,
-        "height": 600,
-        "resizable": true,
+        "width": 600,
+        "height": 320,
+        "resizable": false,
         "fullscreen": false
       }
     ],
