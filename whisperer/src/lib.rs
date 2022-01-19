@@ -15,7 +15,10 @@ pub fn decode(s: String) -> String {
         clear.push(decrypt(index, &reduction[index - 1], reduction.len(), e));
     }
     let buf = zstd::stream::decode_all(clear.as_slice()).unwrap_or(clear);
-    let mut result = String::from_utf8(buf).expect("解密失败, 请检查你的输入");
+    let mut result = match String::from_utf8(buf) {
+        Ok(s) => s,
+        Err(..) => return "解密失败, 请检查你的输入".to_string()
+    };
     for key in &Conf::global().key_words {
         result = result.replace(key[1].as_str(), key[0].as_str());
     }
