@@ -13,17 +13,15 @@ _古神的低语_
 
 将文本编码为简短的中文字符, 防和谐, 并非加密. 如需加密请使用其他实用工具
 
-
-
-## Cli
-
-### 1. Windows
+## Windows
 
 前往 [releases](https://github.com/Borber/Whisperer/releases) 下载最新二进制包
 
-### 2. Linux / Mac / 其他`rust`支持的平台
+## Linux / Mac / 其他`rust`支持的平台
 
 下载源码, 使用 `cargo build --release` 编译最新二进制文件, 后续会添加多平台的二进制支持. 请耐心等待
+
+## CLI
 
 #### 使用方法
 
@@ -40,6 +38,10 @@ _古神的低语_
 ```
 
 字典校验及排序, 检验的是 `config.toml` 中的 `dict` 数组
+
+## GUI
+
+![截图](https://i.pstorage.space/i/qYe9xjKX5/original_1.png)
 
 #### `config.toml` 配置说明
 
