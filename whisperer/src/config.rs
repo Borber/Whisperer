@@ -29,7 +29,7 @@ impl Conf {
                 str_val.as_str()
             }
             _ => {
-                include_str!("../config.toml")
+                include_str!("config.toml")
             }
         };
         let mut conf: Conf = toml::from_str(config_str).expect("解析失败, 请查看你的配置文件结构");
