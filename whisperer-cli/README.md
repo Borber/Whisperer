@@ -1,6 +1,6 @@
 ## CLI
 
-使用`clap v3` `打包 `Whisperer` `lib` 中的方法 实现的命令行程序
+使用`clap v3` 打包 `Whisperer` `lib` 中的方法 实现的命令行程序
 
 #### 使用方法
 

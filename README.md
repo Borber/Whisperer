@@ -13,6 +13,16 @@ _古神的低语_
 
 将文本编码为简短的中文字符, 防和谐, 并非加密. 如需加密请使用其他实用工具
 
+|           模块名            |         模块作用         |                           文档地址                           |
+| :-------------------------: | :----------------------: | :----------------------------------------------------------: |
+|          whisperer          |  核心模块, 主要功能实现  |                            本文档                            |
+|        whisperer-cli        |        命令行版本        | [README](https://github.com/Borber/Whisperer/blob/master/whisperer-cli/README.md) |
+|      whisperer-server       |        服务器版本        | [README](https://github.com/Borber/Whisperer/blob/master/whisperer-server/README.md) |
+| whisperer-serverless-vercel | `Vercel`无服务器函数版本 | [README](https://github.com/Borber/Whisperer/blob/master/whisperer-serverless-vercel/README.md) |
+|     whisperer-svelte-ts     |     GUI 版本 (Tauri)     | [README](https://github.com/Borber/Whisperer/blob/master/whisperer-svelte-ts/README.md) |
+
+以下是必要的简洁介绍, 具体使用请查看各模块的 `README` 文件
+
 ## Windows
 
 前往 [releases](https://github.com/Borber/Whisperer/releases) 下载最新二进制包
@@ -61,71 +71,42 @@ _古神的低语_
 
 
 
-## Server
-
-运行 `server` 程序, 根据 `server.toml`配置, 将监听对应地址端口, 项目样例中为 `127.0.0.1:3000`, 加密解密`api`地址也可在 `server.toml`中配置. 
-
-### 加密
-
-`post` 请求 `localhost:3000/v1/api/e`
-
-```json
-{
-    "s": "123"
-}
-```
-
-响应:
-
-```json
-{
-    "s": "低语:央慈奉资"
-}
-```
-
-
-
-### 解密
-
-`post`请求 `localhost:3000/v1/api/d`
-
-```json
-{
-    "s": "低语:央慈奉资"
-}
-```
-
-响应:
-
-```json
-{
-    "s": "123"
-}
-```
-
 
 
 ## TODO
 
 - [ ] 历史记录
-- [ ] 服务器部署, 提供样例`api`接口
-  - [x] 服务端开始提供
-  - [x] 更新为post方法, 提供 `json` 支持
-  - [x] 监听地址配置化
-  - [x] api地址移入配置
-  - [ ] 部署云端
-- [ ] 提供全平台可执行文件
-  - [ ] cli
-  - [ ] server
-  - [ ] gui
-- [ ] 尝试是否可以完全前端化 -> `wasm`
+
 - [ ] 部署`Demo`网站
+
+- [ ] 提供全平台可执行文件
+    - [ ] cli
+    - [ ] server
+    - [ ] gui
+
+- [ ] 尝试是否可以完全前端化 -> `wasm`
+
+    - [ ] `zstd-sys`  `wasm`化受阻
+
+
 - [ ] 提供自部署方案
 
 ## 已完成
 
+- [x] 服务器部署, 提供样例`api`接口
+
+    - [x] 服务端开始提供
+
+    - [x] 更新为post方法, 提供 `json` 支持
+
+    - [x] 监听地址配置化
+
+    - [x] api地址移入配置
+
+    - [x] 部署云端
+
 - [x] `GUI`
-  - [x] 美化 `GUI` 界面
+    - [x] 美化 `GUI` 界面
 
 - [x] 配置文件地址移入传参
 - [x] zstd 压缩等级配置化
@@ -136,25 +117,25 @@ _古神的低语_
 - [x] 对输入字符串进行判断
 - [x] 常量移入配置文件
 
-  - [x] 准备工作
+    - [x] 准备工作
 
-  - [x] 求余密钥
+    - [x] 求余密钥
 
-  - [x] 字典
+    - [x] 字典
 
-  - [x] 标识
+    - [x] 标识
 
-  - [x] 派生密钥
+    - [x] 派生密钥
 
-  - [x] 优化关键词
+    - [x] 优化关键词
 - [x] 使用简体字字典, 避免部分平台对繁体的操作
 - [x] zstd 压缩数据
 - [x] 自定义求余加密算法
 - [x] 基本功能实现
 - [x] 对常见链接进行优化
-  - [x] 磁力链接
-  - [x] 百度分享链接
-  - [x] 阿里云盘分享链接
+    - [x] 磁力链接
+    - [x] 百度分享链接
+    - [x] 阿里云盘分享链接
 
 ## 常见奇葩<sup>褒义</sup>加密对比
 

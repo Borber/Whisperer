@@ -25,7 +25,7 @@
 }
 ```
 
-![e](https://cf.pstorage.space/i/k8oDwK2vK/original_e.png)
+![e](https://i.pstorage.space/i/k8oDwK2vK/original_e.png)
 
 ### 解密
 
@@ -48,7 +48,7 @@
 }
 ```
 
-![d](https://cf.pstorage.space/i/abQMmDWxe/original_d.png)
+![d](https://i.pstorage.space/i/abQMmDWxe/original_d.png)
 
 感谢以下项目:
 
