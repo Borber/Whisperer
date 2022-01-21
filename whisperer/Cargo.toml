@@ -9,7 +9,7 @@ keywords = ["encode", "chinese"]
 homepage = "https://github.com/Borber/whisperer"
 repository = "https://github.com/Borber/whisperer"
 include = ["/src/**/*", "/Cargo.toml", "/LICENSE", "/README.md"]
-readme = "README.md"
+readme = "../README.md"
 
 [dependencies]
 blake3 = "1"

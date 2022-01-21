@@ -3,8 +3,8 @@ use tracing::{debug, info};
 
 use whisperer::{decode, encode};
 use whisperer::config::Conf;
-use crate::config::ServerConf;
 
+use crate::config::ServerConf;
 use crate::response::JsonBody;
 
 mod response;
@@ -12,7 +12,7 @@ mod config;
 
 #[tokio::main]
 async fn main() -> Result<(), std::io::Error> {
-    Conf::init_conf("config.toml");
+    Conf::init_conf();
     let server_config = ServerConf::init_config("server.toml");
     let addr = server_config.get_address();
     if std::env::var_os("RUST_LOG").is_none() {

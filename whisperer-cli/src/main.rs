@@ -19,7 +19,7 @@ struct Cli {
 }
 
 fn main() {
-    Conf::init_conf("config.toml");
+    Conf::init_conf();
     let cli: Cli = Cli::parse();
     if let Some(encrypt) = cli.value {
         println!("{}{}", Conf::global().flag, encode(encrypt));

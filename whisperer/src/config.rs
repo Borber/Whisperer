@@ -21,8 +21,18 @@ impl Conf {
         G_CONF.get().expect("配置未初始化")
     }
 
-    pub fn init_conf(path: &str) {
-        let mut conf = pure_config(path);
+    pub fn init_conf() {
+        let mut str_val = String::new();
+        let config_str = match File::open("config.toml") {
+            Ok(mut file) => {
+                file.read_to_string(&mut str_val).expect("请确认文件编码格式");
+                str_val.as_str()
+            }
+            _ => {
+                include_str!("../config.toml")
+            }
+        };
+        let mut conf: Conf = toml::from_str(config_str).expect("解析失败, 请查看你的配置文件结构");
         conf.dict.sort_unstable();
         G_CONF.set(conf).expect("设置全局配置失败");
     }
