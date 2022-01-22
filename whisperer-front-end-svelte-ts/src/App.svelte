@@ -32,10 +32,10 @@
         <textarea bind:this={encode_text} class="textarea fot has-fixed-size block" placeholder="明文"></textarea>
         <div class="block">
             <button class="button is-info fot" id="eb" on:click={en}>
-                加密
+                低语
             </button>
             <button class="button is-success fot" id="db" on:click={de}>
-                解密
+                高歌
             </button>
             <button class="button fot" id="copy" on:click={cp}>
                 𝑪𝑶𝑷𝒀
