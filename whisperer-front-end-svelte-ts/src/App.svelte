@@ -46,7 +46,7 @@
                 alt="Whisperer" src="https://img.shields.io/static/v1?&label=&message=Whisper"/></a> <img alt="stars"
                                                                                                           src="https://img.shields.io/github/stars/Borber/Whisperer.svg?style=social">
         </p>
-        <p class="announcement fot">⬥ Copy: 复制最新值生成的值</p>
+        <p class="announcement fot">⬥ Copy: 复制最新生成的值</p>
         <p class="announcement fot">⬥ 推荐字体：<a class="hlink" href="https://mp.weixin.qq.com/s/zkV_yDuJalN62PqcdEcsHQ">BC咒术回战</a>
         </p>
     </div>
