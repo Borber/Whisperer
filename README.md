@@ -13,13 +13,14 @@ _古神的低语_
 
 将文本编码为简短的中文字符, 防和谐, 并非加密. 如需加密请使用其他实用工具
 
-|           模块名            |         模块作用         |                           文档地址                           |
-| :-------------------------: | :----------------------: | :----------------------------------------------------------: |
-|          whisperer          |  核心模块, 主要功能实现  |                            本文档                            |
-|        whisperer-cli        |        命令行版本        | [README](https://github.com/Borber/Whisperer/blob/master/whisperer-cli/README.md) |
-|      whisperer-server       |        服务器版本        | [README](https://github.com/Borber/Whisperer/blob/master/whisperer-server/README.md) |
-| whisperer-serverless-vercel | `Vercel`无服务器函数版本 | [README](https://github.com/Borber/Whisperer/blob/master/whisperer-serverless-vercel/README.md) |
-|     whisperer-svelte-ts     |     GUI 版本 (Tauri)     | [README](https://github.com/Borber/Whisperer/blob/master/whisperer-svelte-ts/README.md) |
+|            模块名             |         模块作用         |                           文档地址                           |
+| :---------------------------: | :----------------------: | :----------------------------------------------------------: |
+|           whisperer           |  核心模块, 主要功能实现  |                            本文档                            |
+|         whisperer-cli         |        命令行版本        | [README](https://github.com/Borber/Whisperer/blob/master/whisperer-cli/README.md) |
+|       whisperer-server        |        服务器版本        | [README](https://github.com/Borber/Whisperer/blob/master/whisperer-server/README.md) |
+|  whisperer-serverless-vercel  | `Vercel`无服务器函数版本 | [README](https://github.com/Borber/Whisperer/blob/master/whisperer-serverless-vercel/README.md) |
+|      whisperer-svelte-ts      |     GUI 版本 (Tauri)     | [README](https://github.com/Borber/Whisperer/blob/master/whisperer-svelte-ts/README.md) |
+| whisperer-front-end-svelte-ts |         前端实现         |                                                              |
 
 以下是必要的简洁介绍, 具体使用请查看各模块的 `README` 文件
 
