@@ -95,6 +95,8 @@
 
   body {
     background-image: url("static/christmas-black.png");
+    height: 100vh;
+    margin: 0;
   }
 
   .announcement {
