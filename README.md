@@ -20,7 +20,7 @@ _古神的低语_
 |       whisperer-server        |        服务器版本        | [README](https://github.com/Borber/Whisperer/blob/master/whisperer-server/README.md) |
 |  whisperer-serverless-vercel  | `Vercel`无服务器函数版本 | [README](https://github.com/Borber/Whisperer/blob/master/whisperer-serverless-vercel/README.md) |
 |      whisperer-svelte-ts      |     GUI 版本 (Tauri)     | [README](https://github.com/Borber/Whisperer/blob/master/whisperer-svelte-ts/README.md) |
-| whisperer-front-end-svelte-ts |         前端实现         |                                                              |
+| whisperer-front-end-svelte-ts |         前端实现         | [README](https://github.com/Borber/Whisperer/blob/master/whisperer-front-end-svelte-ts/README.md) |
 
 以下是必要的简洁介绍, 具体使用请查看各模块的 `README` 文件
 
