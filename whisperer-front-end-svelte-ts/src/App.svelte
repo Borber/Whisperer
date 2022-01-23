@@ -42,7 +42,8 @@
             </button>
         </div>
         <textarea bind:this={decode_text} class="textarea fot has-fixed-size block" placeholder="密文"></textarea>
-        <p class="announcement fot">⬥ 如果您喜欢本项目并能给一个star就太好了 <a href="https://github.com/Borber/Whisperer"><img
+        <p class="announcement fot">⬥ 如果您喜欢本项目并能给一个star就太好了 <a href="https://github.com/Borber/Whisperer"
+                                                               target="_blank"><img
                 alt="Whisperer" src="https://img.shields.io/static/v1?&label=&message=Whisper"/></a> <img alt="stars"
                                                                                                           src="https://img.shields.io/github/stars/Borber/Whisperer.svg?style=social">
         </p>
