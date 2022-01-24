@@ -1,28 +1,31 @@
-use std::error::Error;
-use std::fmt::{format, Pointer};
-
-use http::StatusCode;
-use vercel_lambda::{error::VercelError, IntoResponse, lambda, Request, Response};
+use poem::{handler, web::Json};
 use whisperer::{decode, encode};
 use whisperer::config::Conf;
 
-use base_response::{re, RequestBody, ResponseBody};
+use poem_vercel_lib::{
+    Error,
+    response::*,
+};
 
-fn handler(request: Request) -> Result<impl IntoResponse, VercelError> {
-    let (parts, body) = request.into_parts();
-    let response = match serde_json::from_slice::<RequestBody>(&body) {
-        Ok(body) if body.s.len() > 0 => {
-            re(ResponseBody::new(0, decode(body.s.replace(&Conf::global().flag, ""))))
+#[handler]
+fn index(req: Json<RequestBody>) -> Json<serde_json::Value> {
+    match req.s.len() {
+        l if l > 0 => {
+            if req.s.starts_with(&Conf::global().flag) {
+                let re = decode(req.s.replace(&Conf::global().flag, ""));
+                success_s(re)
+            } else {
+                fail(format!("请检查你的输入格式, 形如 -> {}XXX", &Conf::global().flag).as_str())
+            }
         }
         _ => {
-            re(ResponseBody::new(1, "请检查你的输入".to_string()))
+            fail("请输入文字")
         }
-    };
-    Ok(response)
+    }
 }
 
-// Start the runtime with the handler
-fn main() -> Result<(), Box<dyn Error>> {
+#[tokio::main]
+async fn main() -> Result<(), Error> {
     Conf::init_conf();
-    Ok(lambda!(handler))
+    poem_vercel_lib::run(index).await
 }

@@ -11,6 +11,10 @@ repository = "https://github.com/Borber/whisperer"
 include = ["/src/**/*", "/Cargo.toml", "/LICENSE", "/README.md"]
 readme = "README.md"
 
+[lib]
+name = "whisperer_server_lib"
+path = "lib/response.rs"
+
 [dependencies]
 poem = "1.2"
 serde = { version = "1.0", features = ["derive"] }
