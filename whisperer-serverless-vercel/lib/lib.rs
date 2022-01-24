@@ -1,7 +1,7 @@
 use std::{ops::Deref, sync::Arc};
 
 pub use lambda_runtime::Error;
-use poem::{Endpoint, EndpointExt, IntoEndpoint, Request};
+use poem::{Endpoint, EndpointExt, IntoEndpoint, middleware::Cors, Request};
 
 use crate::types::{to_vercel_response, VercelEvent};
 
@@ -52,7 +52,7 @@ impl Deref for Context {
 /// }
 /// ```
 pub async fn run(ep: impl IntoEndpoint) -> Result<(), Error> {
-    let ep = Arc::new(ep.map_to_response().into_endpoint());
+    let ep = Arc::new(ep.map_to_response().into_endpoint().with(Cors::new()));
     lambda_runtime::run(lambda_runtime::handler_fn(
         move |event: VercelEvent, ctx: lambda_runtime::Context| {
             let ep = ep.clone();
