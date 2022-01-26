@@ -4,7 +4,7 @@ use serde::{Deserialize, Serialize};
 
 #[derive(Serialize, Deserialize, Debug)]
 pub struct Api {
-    pub uri: String,
+    pub uri_id: String,
     pub database: String,
     pub collection: String,
     pub auth_code: String,
@@ -12,7 +12,7 @@ pub struct Api {
 
 #[derive(Serialize, Deserialize, Debug)]
 pub struct DataBaseConfig {
-    pub uri: String,
+    pub uri_id: String,
     pub database: String,
     pub collection: String,
 }
@@ -33,7 +33,7 @@ impl Api {
         reqwest::Client::new().post("https://vercel-mongodb-count.vercel.app/api/v1/add")
             .json(AddVO {
                 database: DataBaseConfig {
-                    uri: self.uri.clone(),
+                    uri_id: self.uri_id.clone(),
                     database: self.database.clone(),
                     collection: self.collection.clone(),
                 },
