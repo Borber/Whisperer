@@ -1,24 +1,28 @@
 <script lang="ts">
     import axios from "axios";
+    import Count from "./components/Count.svelte";
 
     let encode_text;
     let decode_text;
+    let count_c;
     let result = "";
 
     const en = () => {
         axios.post("https://whisperer-serverless-vercel.vercel.app/api/v1/encode", {
             s: encode_text.value
-        }).then(response => {
+        }).then(async (response) => {
             result = response.data.result;
             decode_text.value = result
+            await count_c.local_add_one()
         })
     };
     const de = () => {
         axios.post("https://whisperer-serverless-vercel.vercel.app/api/v1/decode", {
             s: decode_text.value
-        }).then(response => {
+        }).then(async (response) => {
             result = response.data.result;
             encode_text.value = result
+            await count_c.local_add_one()
         })
     };
     const cp = () => {
@@ -50,6 +54,7 @@
         <p class="announcement fot">⬥ Copy: 复制最新生成的值</p>
         <p class="announcement fot">⬥ 推荐字体：<a class="hlink" href="https://mp.weixin.qq.com/s/zkV_yDuJalN62PqcdEcsHQ">BC咒术回战</a>
         </p>
+        <Count bind:this={count_c}/>
     </div>
 </main>
 
