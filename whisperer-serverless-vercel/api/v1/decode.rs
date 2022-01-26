@@ -1,14 +1,20 @@
 use poem::{handler, web::Json};
-use whisperer::{decode, encode};
+use tokio::time;
 use whisperer::config::Conf;
+use whisperer::decode;
 
 use poem_vercel_lib::{
+    api::Api,
     Error,
     response::*,
 };
 
 #[handler]
-fn index(req: Json<RequestBody>) -> Json<serde_json::Value> {
+async fn index(req: Json<RequestBody>) -> Json<serde_json::Value> {
+    let api = Api::default();
+    time::timeout(time::Duration::from_millis(20), async {
+        api.add_one().await;
+    }).await;
     match req.s.len() {
         l if l > 0 => {
             if req.s.starts_with(&Conf::global().flag) {

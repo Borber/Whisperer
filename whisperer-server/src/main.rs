@@ -6,7 +6,6 @@ use whisperer::config::Conf;
 use whisperer_server_lib::*;
 
 use crate::config::ServerConf;
-use crate::response::JsonBody;
 
 mod config;
 

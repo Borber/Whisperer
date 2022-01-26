@@ -5,6 +5,7 @@ use poem::{Endpoint, EndpointExt, IntoEndpoint, middleware::Cors, Request};
 
 use crate::types::{to_vercel_response, VercelEvent};
 
+pub mod api;
 mod types;
 pub mod response;
 

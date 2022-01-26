@@ -1,0 +1,4 @@
+uri = "mongodb+srv://<user>:<password>.example.com"
+database = "database"
+collection = "collection"
+auth_code = "1BCF2FEAD4B74FA2BC7FED8632C4B94224B73CE2CD1C4EA1A55B10163BAB4938"
