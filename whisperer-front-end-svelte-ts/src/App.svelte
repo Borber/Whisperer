@@ -36,7 +36,7 @@
 
 <main>
     <div class="container column is-4 is-offset-4">
-        <h1 class="whisperer">Whisperer</h1>
+        <h1 class="whisperer">Whisperer / 低语者</h1>
         <textarea bind:this={encode_text} class="textarea fot has-fixed-size block" placeholder="明文"></textarea>
         <div class="block">
             <button class="button is-info fot" id="eb" on:click={en}>
