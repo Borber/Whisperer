@@ -64,7 +64,7 @@
 </script>
 
 <main>
-    <p class="count_doc">API共计被调用 <i class="count">{count}</i> 次</p>
+    <p class="count_doc">API共计被调用<i class="count"> {count} </i>次</p>
 </main>
 
 <style global lang="scss">
