@@ -28,6 +28,10 @@
     const cp = () => {
         navigator.clipboard.writeText(result);
     }
+
+    window.onload = async () => {
+        await count_c.show_count()
+    }
 </script>
 
 <main>

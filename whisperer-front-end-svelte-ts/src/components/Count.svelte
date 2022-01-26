@@ -29,7 +29,7 @@
         count++
     }
 
-    const show_count = async () => {
+    export const show_count = async () => {
         axios(config)
             .then(async (response) => {
                 count
@@ -61,9 +61,6 @@
         }
     }
 
-    window.onload = async () => {
-        await show_count()
-    }
 </script>
 
 <main>
