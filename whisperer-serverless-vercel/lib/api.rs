@@ -26,8 +26,8 @@ pub struct AddVO {
 
 impl Api {
     pub fn default() -> Self {
-        let str_val = include_str!("api.toml");
-        toml::from_str(&str_val).expect("解析失败, 请查看你的配置文件结构")
+        let s = env!("API_CONFIG");
+        serde_json::from_str(s).expect("解析失败, 请查看你的配置文件结构")
     }
     pub async fn add_one(&self) {
         reqwest::Client::new().post("https://vercel-mongodb-count.vercel.app/api/v1/add")
