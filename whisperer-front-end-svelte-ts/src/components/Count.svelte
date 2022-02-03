@@ -1,5 +1,5 @@
 <script lang="ts">
-    import axios from "axios";
+    import axios, {AxiosRequestConfig} from "axios";
 
     const data = JSON.stringify({
         "database": {
@@ -9,7 +9,7 @@
         }
     });
 
-    const config = {
+    const config: AxiosRequestConfig = {
         method: 'post',
         url: 'https://vercel-mongodb-count.vercel.app/api/v1/count',
         headers: {

@@ -2,26 +2,26 @@
     import axios from "axios";
     import Count from "./components/Count.svelte";
 
-    let encode_text;
-    let decode_text;
-    let count_c;
+    let encode_text: string;
+    let decode_text: string;
+    let count_c: Count;
     let result = "";
 
     const en = () => {
         axios.post("https://whisperer-serverless-vercel.vercel.app/api/v1/encode", {
-            s: encode_text.value
+            s: encode_text
         }).then(async (response) => {
             result = response.data.result;
-            decode_text.value = result
+            decode_text = result
             await count_c.local_add_one()
         })
     };
     const de = () => {
         axios.post("https://whisperer-serverless-vercel.vercel.app/api/v1/decode", {
-            s: decode_text.value
+            s: decode_text
         }).then(async (response) => {
             result = response.data.result;
-            encode_text.value = result
+            encode_text = result
             await count_c.local_add_one()
         })
     };
@@ -37,7 +37,7 @@
 <main>
     <div class="container column is-4 is-offset-4">
         <h1 class="whisperer">Whisperer / 低语者</h1>
-        <textarea bind:this={encode_text} class="textarea fot has-fixed-size block" placeholder="明文"></textarea>
+        <textarea bind:value={encode_text} class="textarea fot has-fixed-size block" placeholder="明文"></textarea>
         <div class="block">
             <button class="button is-info fot" id="eb" on:click={en}>
                 低语
@@ -49,7 +49,7 @@
                 𝑪𝑶𝑷𝒀
             </button>
         </div>
-        <textarea bind:this={decode_text} class="textarea fot has-fixed-size block" placeholder="密文"></textarea>
+        <textarea bind:value={decode_text} class="textarea fot has-fixed-size block" placeholder="密文"></textarea>
         <p class="announcement fot">⬥ 如果您喜欢本项目并能给一个<i class="star"> star </i>就太好了 <a
                 href="https://github.com/Borber/Whisperer" target="_blank"><img
                 alt="Whisperer" src="https://img.shields.io/static/v1?&label=&message=Whisper"/></a> <img alt="stars"
