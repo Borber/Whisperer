@@ -1,19 +1,19 @@
 <script lang="ts">
     import {invoke} from "@tauri-apps/api/tauri";
 
-    let encode_text;
-    let decode_text;
+    let encode_text: string;
+    let decode_text: string;
     let result = "";
     const en = () => {
         invoke("encode_api", {
             endpoint: "加密",
             body: {
-                s: encode_text.value
+                s: encode_text
             },
         }).then(
             (res) => {
                 result = res.toString()
-                decode_text.value = result
+                decode_text = result
             }
         )
     };
@@ -21,12 +21,12 @@
         invoke("decode_api", {
             endpoint: "解密",
             body: {
-                s: decode_text.value
+                s: decode_text
             },
         }).then(
             (res) => {
                 result = res.toString()
-                encode_text.value = result
+                encode_text = result
             }
         )
     };
@@ -35,7 +35,7 @@
     }
 </script>
 
-<textarea bind:this={encode_text} id="et" placeholder="明文"></textarea>
+<textarea bind:value={encode_text} id="et" placeholder="明文"></textarea>
 
 <div class="buttons">
     <button id="eb" on:click={en}>
@@ -49,7 +49,7 @@
     </button>
 </div>
 
-<textarea bind:this={decode_text} id="dt" placeholder="密文"></textarea>
+<textarea bind:value={decode_text} id="dt" placeholder="密文"></textarea>
 
 <style>
     :global(body) {
