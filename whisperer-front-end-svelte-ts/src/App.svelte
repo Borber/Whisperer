@@ -6,6 +6,8 @@
     let decode_text: string;
     let count_c: Count;
     let result = "";
+    let github_icon: string;
+    let github_star: string;
 
     const en = () => {
         axios.post("https://whisperer-serverless-vercel.vercel.app/api/v1/encode", {
@@ -28,8 +30,14 @@
     const cp = () => {
         navigator.clipboard.writeText(result);
     }
+    const clear = () => {
+        encode_text = ""
+        decode_text = ""
+    }
 
     window.onload = async () => {
+        github_icon = "https://img.shields.io/static/v1?&label=&message=Whisper"
+        github_star = "https://img.shields.io/github/stars/Borber/Whisperer.svg?style=social"
         await count_c.show_count()
     }
 </script>
@@ -45,16 +53,19 @@
             <button class="button is-success fot" id="db" on:click={de}>
                 高歌
             </button>
-            <button class="button fot" id="copy" on:click={cp}>
+            <button class="button" on:click={cp}>
                 𝑪𝑶𝑷𝒀
+            </button>
+            <button class="button is-warning is-light" on:click={clear}>
+                𝑪𝑳𝑬𝑨𝑹
             </button>
         </div>
         <textarea bind:value={decode_text} class="textarea fot has-fixed-size block" placeholder="密文"></textarea>
         <p class="announcement fot">⬥ 如果您喜欢本项目并能给一个<i class="star"> star </i>就太好了 <a
                 href="https://github.com/Borber/Whisperer" target="_blank"><img
-                alt="Whisperer" src="https://img.shields.io/static/v1?&label=&message=Whisper"/></a> <img alt="stars"
-                                                                                                          src="https://img.shields.io/github/stars/Borber/Whisperer.svg?style=social">
+                alt="Whisperer" src={github_icon}/></a> <img alt="stars" src={github_star}>
         </p>
+        <p class="announcement fot">⬥ 本项目后端完全开源, 无法记录任何加密内容, 请放心使用。</p>
         <p class="announcement fot">⬥ Copy: 复制最新生成的值</p>
         <p class="announcement fot">⬥ 推荐字体：<a class="hlink" href="https://mp.weixin.qq.com/s/zkV_yDuJalN62PqcdEcsHQ">BC咒术回战</a>
         </p>
@@ -82,6 +93,7 @@
 
   button {
     font-weight: bold;
+    border-radius: 0 !important;
   }
 
   button:not(:last-child) {
