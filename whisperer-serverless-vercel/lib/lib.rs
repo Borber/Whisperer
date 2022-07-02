@@ -17,7 +17,7 @@ pub mod response;
 ///
 /// ```
 /// use poem::{handler, Request};
-/// use poem_vercel::Context;
+/// use poem_vercel_lib::Context;
 ///
 /// #[handler]
 /// fn index(req: &Request, ctx: &Context) {
@@ -40,7 +40,7 @@ impl Deref for Context {
 ///
 /// ```no_run
 /// use poem::handler;
-/// use poem_vercel::Error;
+/// use poem_vercel_lib::Error;
 ///
 /// #[handler]
 /// fn index() -> &'static str {
@@ -49,7 +49,7 @@ impl Deref for Context {
 ///
 /// #[tokio::main]
 /// async fn main() -> Result<(), Error> {
-///     poem_vercel::run(index).await
+///     poem_vercel_lib::run(index).await
 /// }
 /// ```
 pub async fn run(ep: impl IntoEndpoint) -> Result<(), Error> {
