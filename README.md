@@ -7,7 +7,7 @@
 
 声明: 对本项目涉及的非法使用概不负责！
 
-# _低语者_ / _Whisperer_   [Demo](https://whisperer.vercel.app/)
+# _低语者_ / _Whisperer_   [Demo](https://whisperer.run-eu-central1.goorm.io/)
 
 _古神的低语_
 
