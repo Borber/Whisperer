@@ -40,6 +40,11 @@
 }
 ```
 
+## 提供免费api以供测试:
+
+`https://whisperer.run-eu-central1.goorm.io/v1/api`
+
+
 感谢以下项目:
 
 [poem](https://github.com/poem-web/poem)
