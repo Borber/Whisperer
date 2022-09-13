@@ -1,7 +1,7 @@
 {
   "functions": {
     "api/v1/**/*.rs": {
-      "runtime": "vercel-rust@3.1.2"
+      "runtime": "vercel-rust-nightly@3.1.2"
     }
   },
   "headers": [
