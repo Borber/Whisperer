@@ -10,7 +10,7 @@
     let github_star: string;
 
     const en = () => {
-        axios.post("https://whisperer-serverless-vercel.vercel.app/api/v1/encode", {
+        axios.post("https://whisperer.run-eu-central1.goorm.io/v1/api/e", {
             s: encode_text
         }).then(async (response) => {
             result = response.data.result;
@@ -19,7 +19,7 @@
         })
     };
     const de = () => {
-        axios.post("https://whisperer-serverless-vercel.vercel.app/api/v1/decode", {
+        axios.post("https://whisperer.run-eu-central1.goorm.io/v1/api/d", {
             s: decode_text
         }).then(async (response) => {
             result = response.data.result;
