@@ -1,6 +1,6 @@
 # Svelte + TS + Bulma + Vite + Sass
 
-[Demo](https://whisperer.vercel.app/)
+[Demo](https://whisperer.run-eu-central1.goorm.io/)
 
 调用api接口来实现`Whisperer`的功能, 目前调用的是 `Vercel`部署的 serverless function
 
