@@ -1,5 +1,5 @@
 <script lang="ts">
-    import {invoke} from "@tauri-apps/api/tauri";
+    import { invoke } from "@tauri-apps/api/tauri";
 
     let encode_text: string;
     let decode_text: string;
@@ -8,48 +8,38 @@
         invoke("encode_api", {
             endpoint: "加密",
             body: {
-                s: encode_text
+                s: encode_text,
             },
-        }).then(
-            (res) => {
-                result = res.toString()
-                decode_text = result
-            }
-        )
+        }).then((res) => {
+            result = res.toString();
+            decode_text = result;
+        });
     };
     const de = () => {
         invoke("decode_api", {
             endpoint: "解密",
             body: {
-                s: decode_text
+                s: decode_text,
             },
-        }).then(
-            (res) => {
-                result = res.toString()
-                encode_text = result
-            }
-        )
+        }).then((res) => {
+            result = res.toString();
+            encode_text = result;
+        });
     };
     const cp = () => {
         navigator.clipboard.writeText(result);
-    }
+    };
 </script>
 
-<textarea bind:value={encode_text} id="et" placeholder="明文"></textarea>
+<textarea bind:value={encode_text} id="et" placeholder="明文" />
 
 <div class="buttons">
-    <button id="eb" on:click={en}>
-        ▶
-    </button>
-    <button id="db" on:click={de}>
-        ◀
-    </button>
-    <button id="copy" on:click={cp}>
-        𝑪𝑶𝑷𝒀
-    </button>
+    <button id="eb" on:click={en}> ▶ </button>
+    <button id="db" on:click={de}> ◀ </button>
+    <button id="copy" on:click={cp}> 𝑪𝑶𝑷𝒀 </button>
 </div>
 
-<textarea bind:value={decode_text} id="dt" placeholder="密文"></textarea>
+<textarea bind:value={decode_text} id="dt" placeholder="密文" />
 
 <style>
     :global(body) {
@@ -99,6 +89,7 @@
         color: #fffffe;
         width: 76px;
         height: 106px;
+        border-radius: 0;
     }
 
     .buttons {
@@ -117,5 +108,4 @@
         height: 108px;
         background: #3da9fc;
     }
-
 </style>

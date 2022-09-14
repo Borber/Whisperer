@@ -1,10 +1,10 @@
 [package]
-name = "whisperer-svelte-ts"
+name = "whisperer-gui-svelte"
 version = "0.0.1"
 authors = ["Borber <borber.drum@gmail.com>"]
 edition = "2021"
 license = "GPL-3.0-or-later"
-description = "将文本编码为简短的中文字符, 防和谐, tauri svelte-ts 版本 GUI"
+description = "将文本编码为简短的中文字符, 防和谐, tauri svelte 版本 GUI"
 keywords = ["encode", "chinese"]
 homepage = "https://github.com/Borber/whisperer"
 repository = "https://github.com/Borber/whisperer"
@@ -13,14 +13,18 @@ readme = "README.md"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [build-dependencies]
-tauri-build = { version = "1.0.0-beta.4" }
+tauri-build = { version = "1.0.0", features = [] }
 
 [dependencies]
 serde_json = "1.0"
 serde = { version = "1.0", features = ["derive"] }
-tauri = { version = "1.0.0-beta.8", features = ["api-all"] }
+tauri = { version = "1.0.0", features = ["api-all"] }
 whisperer = { path = "../../whisperer", version = "0" }
 
 [features]
+# by default Tauri runs in production mode
+# when `tauri dev` runs it is executed with `cargo run --no-default-features` if `devPath` is an URL
 default = [ "custom-protocol" ]
+# this feature is used used for production builds where `devPath` points to the filesystem
+# DO NOT remove this
 custom-protocol = [ "tauri/custom-protocol" ]
