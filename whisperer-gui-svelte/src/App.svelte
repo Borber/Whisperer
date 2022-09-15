@@ -3,17 +3,24 @@
 
     let encode_text: string;
     let decode_text: string;
-    let result = "";
+    let result: string;
+
     const en = () => {
-        invoke("encode_api", {
-            endpoint: "加密",
-            body: {
-                s: encode_text,
-            },
-        }).then((res) => {
-            result = res.toString();
-            decode_text = result;
-        });
+        console.log(encode_text);
+        if(encode_text){
+            invoke("encode_api", {
+                endpoint: "加密",
+                body: {
+                    s: encode_text,
+                },
+            }).then((res) => {
+                result = res.toString();
+                decode_text = result;
+            });
+        } else {
+            decode_text=""
+        }
+        
     };
     const de = () => {
         invoke("decode_api", {
@@ -31,15 +38,9 @@
     };
 </script>
 
-<textarea bind:value={encode_text} id="et" placeholder="明文" />
+<textarea bind:value={encode_text} on:input={en} id="et" placeholder="明文" />
 
-<div class="buttons">
-    <button id="eb" on:click={en}> ▶ </button>
-    <button id="db" on:click={de}> ◀ </button>
-    <button id="copy" on:click={cp}> 𝑪𝑶𝑷𝒀 </button>
-</div>
-
-<textarea bind:value={decode_text} id="dt" placeholder="密文" />
+<textarea bind:value={decode_text} on:input={de} id="dt" placeholder="密文" />
 
 <style>
     :global(body) {
@@ -48,11 +49,15 @@
 
     :global(#app) {
         display: flex;
+        justify-content: space-between;
+    }
+    #et{
+        border-right: 1px solid #3da9fc;
     }
 
     textarea {
-        width: 262px;
-        height: 320px;
+        width: 50%;
+        height: 100%;
         border: none;
         box-sizing: border-box;
         color: #a7a9be;
@@ -83,29 +88,4 @@
         background-color: transparent;
     }
 
-    button {
-        padding: 0;
-        border: none;
-        color: #fffffe;
-        width: 76px;
-        height: 106px;
-        border-radius: 0;
-    }
-
-    .buttons {
-        width: 76px;
-    }
-
-    #eb {
-        background: #ff8905;
-    }
-
-    #db {
-        background: #f25f4c;
-    }
-
-    #copy {
-        height: 108px;
-        background: #3da9fc;
-    }
 </style>
