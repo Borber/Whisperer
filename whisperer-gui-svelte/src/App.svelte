@@ -16,6 +16,7 @@
             }).then((res) => {
                 result = res.toString();
                 decode_text = result;
+                navigator.clipboard.writeText(result);
             });
         } else {
             decode_text=""
@@ -33,15 +34,12 @@
             encode_text = result;
         });
     };
-    const cp = () => {
-        navigator.clipboard.writeText(result);
-    };
+
 </script>
 
 <textarea bind:value={encode_text} on:input={en} id="et" placeholder="明文" />
 
 <textarea bind:value={decode_text} on:input={de} id="dt" placeholder="密文" />
-
 <style>
     :global(body) {
         margin: 0;
